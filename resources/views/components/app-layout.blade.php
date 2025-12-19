@@ -48,14 +48,22 @@
     },
     user: null,
     token: localStorage.getItem('token'),
+    authReady: false,
     async init() {
         if (this.darkMode) {
             document.documentElement.classList.add('dark');
         }
 
+        // Skip auth check for login/register pages
+        if (window.location.pathname.includes('login') || window.location.pathname.includes('register')) {
+            this.authReady = true;
+            return;
+        }
+
         if (this.token) {
             await this.fetchUser();
-        } else if (!window.location.pathname.includes('login')) {
+            this.authReady = true;
+        } else {
             window.location.href = '/login';
         }
     },
@@ -84,7 +92,15 @@
         window.location.href = '/login';
     }
 }" @sidebar-toggle.window="sidebarCollapsed = $event.detail.collapsed; localStorage.setItem('sidebarCollapsed', sidebarCollapsed)">
-    <div class="min-h-screen bg-background">
+    <!-- Auth Loading Screen -->
+    <div x-show="!authReady" class="fixed inset-0 bg-background z-50 flex items-center justify-center">
+        <div class="text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin mx-auto text-primary mb-3"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            <p class="text-muted-foreground text-sm">Memuat...</p>
+        </div>
+    </div>
+
+    <div x-show="authReady" x-cloak class="min-h-screen bg-background">
         <!-- Sidebar -->
         <x-app-sidebar :collapsed="false" />
 
