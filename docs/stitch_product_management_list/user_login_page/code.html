@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Login - Siomay/Dimsum Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf91",
+                        "primary-hover": "#14b07b",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#11211c",
+                        "text-dark": "#0e1b17",
+                        "text-light": "#e0e7e4",
+                        "border-light": "#d0e7df",
+                        "border-dark": "#2a3d36",
+                        "subtle-light": "#4e977f",
+                        "subtle-dark": "#8fb3a5",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display antialiased bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light transition-colors duration-200">
+<div class="min-h-screen flex w-full">
+<!-- Left Side: Image/Branding -->
+<div class="hidden lg:flex w-1/2 bg-background-light dark:bg-background-dark relative overflow-hidden items-center justify-center p-8">
+<div class="absolute inset-0 z-0">
+<!-- Abstract/Food pattern background -->
+<div class="w-full h-full bg-cover bg-center opacity-80" data-alt="Steamed dumplings and dimsum in bamboo steamer flatlay" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1UtArtW78q-QWq4fRRfAN04TlN_fJRWQYKF91eWa1vAed-4H3gqO1KI4XQbBrQh7QUVUywR96JoxwakYmERB6tFlUheElbHpSfewZUQt2rKD_1AI3llIsuXzdNLAe0NVP-2P3wWaCMNN7vj0sXyUw40W_eWdeVcUuMgqp0qn1791bcvBxy1JTtVmV28_BKKrs9VeERbKKeRJKitUkNXXjGBN_3Zgxw16FM2isa4WzdDoHUrRzdPrN9ZiJ8Ru_S2_EiVBcEaTLXcU');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-light/90 to-transparent dark:from-background-dark/90 z-10"></div>
+</div>
+<div class="relative z-20 flex flex-col items-start justify-end h-full w-full max-w-lg pb-20">
+<div class="mb-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-4xl">restaurant</span>
+</div>
+<h1 class="text-3xl font-bold text-text-dark dark:text-white tracking-tight">DimsumOps</h1>
+</div>
+</div>
+<blockquote class="text-2xl font-medium leading-relaxed mb-4 text-text-dark dark:text-white">
+                    "Streamline your kitchen, optimize your inventory, and delight your customers with every bite."
+                </blockquote>
+<p class="text-lg text-subtle-light dark:text-subtle-dark">The all-in-one platform for modern food production.</p>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="flex-1 flex flex-col items-center justify-center p-4 sm:p-12 bg-white dark:bg-[#152822] shadow-xl lg:shadow-none">
+<div class="w-full max-w-md space-y-8">
+<!-- Mobile Logo (visible only on small screens) -->
+<div class="lg:hidden flex justify-center mb-8">
+<div class="flex items-center gap-2">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">restaurant</span>
+</div>
+<h1 class="text-2xl font-bold text-text-dark dark:text-white">DimsumOps</h1>
+</div>
+</div>
+<!-- Header -->
+<div class="text-center lg:text-left">
+<h2 class="text-3xl font-bold tracking-tight text-text-dark dark:text-white">Welcome Back</h2>
+<p class="mt-2 text-subtle-light dark:text-subtle-dark">Manage your production and sales seamlessly.</p>
+</div>
+<!-- Form -->
+<form action="#" class="mt-8 space-y-6" method="POST">
+<div class="space-y-5">
+<!-- Email Field -->
+<div>
+<label class="block text-sm font-medium leading-6 text-text-dark dark:text-gray-200 mb-2" for="email">Email or Username</label>
+<div class="relative">
+<input autocomplete="email" class="block w-full rounded-lg border-0 py-3 px-4 text-text-dark shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-background-light dark:bg-[#0e1b17] dark:text-white" id="email" name="email" placeholder="Enter your email address" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block text-sm font-medium leading-6 text-text-dark dark:text-gray-200" for="password">Password</label>
+</div>
+<div class="relative rounded-lg shadow-sm">
+<input autocomplete="current-password" class="block w-full rounded-lg border-0 py-3 pl-4 pr-12 text-text-dark shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 bg-background-light dark:bg-[#0e1b17] dark:text-white" id="password" name="password" placeholder="Enter your password" required="" type="password"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer group">
+<span class="material-symbols-outlined text-subtle-light dark:text-subtle-dark hover:text-primary transition-colors select-none" style="font-size: 20px;">visibility</span>
+</div>
+</div>
+</div>
+<!-- Remember Me & Forgot Password -->
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary bg-transparent checked:bg-primary" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-text-dark dark:text-gray-300" for="remember-me">Remember me</label>
+</div>
+<div class="text-sm">
+<a class="font-medium text-primary hover:text-primary-hover hover:underline" href="#">Forgot password?</a>
+</div>
+</div>
+</div>
+<!-- Login Button -->
+<div>
+<button class="flex w-full justify-center rounded-lg bg-primary px-3 py-3.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all duration-200 ease-in-out transform active:scale-[0.98]" type="submit">
+                            Log In
+                        </button>
+</div>
+</form>
+<!-- Footer Link -->
+<p class="mt-10 text-center text-sm text-subtle-light dark:text-subtle-dark">
+                    Don't have an account? 
+                    <a class="font-semibold leading-6 text-primary hover:text-primary-hover hover:underline" href="#">Contact Admin</a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

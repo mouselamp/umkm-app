@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Purchase Order - Siomay Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf91",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#11211c",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0e1b17] dark:text-white min-h-screen flex flex-col font-display">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7f3ef] dark:border-b-[#2a3c35] px-10 py-3 bg-white dark:bg-[#1a2c27]">
+<div class="flex items-center gap-4 text-[#0e1b17] dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">restaurant_menu</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Siomay Manager</h2>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-300">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-primary" href="#">Purchases</a>
+<a class="hover:text-primary transition-colors" href="#">Sales</a>
+<a class="hover:text-primary transition-colors" href="#">Finance</a>
+</nav>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-gray-200 dark:border-gray-700 cursor-pointer" data-alt="User profile avatar placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCveKn9xFMOMYQwgcKRFHB_mQY7FSDMfaazeIHLcohaNQQhbiP_YV5E3oX8nFPrJQRss7FSyEI2PjO57NCmEhQpr64w_eBTbUpGfkvpszbEI8RDBfY5JfXY0UJFc1NuKwUztPEz9zwONeTRqj3TEl4zTrevuhtydDnfzUPDvBfibgarLkigyk7J2-dtypMsN3oWGCuMGgnRm9ZM5aM1mTqS9ZGj6gAOzQNBrBtHGN6hEQzZFGao2twQK5GXpn3WEGTseja-z0D1yBM");'>
+</div>
+</div>
+</header>
+<div class="flex flex-col flex-1 max-w-[1200px] w-full mx-auto px-6 py-8">
+<div class="flex flex-wrap gap-2 mb-6">
+<a class="text-primary hover:text-primary/80 text-sm font-medium leading-normal transition-colors" href="#">Home</a>
+<span class="text-gray-400 text-sm font-medium leading-normal">/</span>
+<a class="text-primary hover:text-primary/80 text-sm font-medium leading-normal transition-colors" href="#">Purchases</a>
+<span class="text-gray-400 text-sm font-medium leading-normal">/</span>
+<span class="text-gray-600 dark:text-gray-300 text-sm font-medium leading-normal">New Order</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-extrabold leading-tight tracking-tight text-[#0e1b17] dark:text-white">Create Purchase Order</h1>
+<p class="text-gray-500 dark:text-gray-400 text-base font-normal">Enter details for new raw material procurement.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                    Cancel
+                </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary/90 text-white font-semibold shadow-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                    Save Order
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a2c27] rounded-xl shadow-sm border border-[#e7f3ef] dark:border-[#2a3c35] p-6">
+<div class="flex items-center gap-2 mb-4 border-b border-[#e7f3ef] dark:border-[#2a3c35] pb-3">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<h2 class="text-lg font-bold">Supplier Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Select Supplier</label>
+<div class="relative">
+<select class="w-full h-12 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-4 text-base font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow appearance-none">
+<option disabled="" selected="" value="">Choose a supplier...</option>
+<option value="supplier1">Fresh Farms Ltd.</option>
+<option value="supplier2">Daily Spices Co.</option>
+<option value="supplier3">Mega Meat Market</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Purchase Date</label>
+<input class="w-full h-12 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-4 text-base font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow text-gray-700 dark:text-gray-200" type="date" value="2023-10-27"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300">Invoice / Reference No.</label>
+<input class="w-full h-12 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-4 text-base font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow placeholder:text-gray-400" placeholder="e.g. INV-2023-001" type="text"/>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a2c27] rounded-xl shadow-sm border border-[#e7f3ef] dark:border-[#2a3c35] p-6 flex-1">
+<div class="flex items-center justify-between mb-4 border-b border-[#e7f3ef] dark:border-[#2a3c35] pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">shopping_basket</span>
+<h2 class="text-lg font-bold">Items List</h2>
+</div>
+<button class="text-primary text-sm font-bold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-base">add_circle</span> Add New Item
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100 dark:border-gray-700">
+<th class="pb-3 pl-2 w-5/12">Item Name</th>
+<th class="pb-3 text-center w-2/12">Qty (kg/pcs)</th>
+<th class="pb-3 text-right w-2/12">Unit Price</th>
+<th class="pb-3 text-right w-2/12">Subtotal</th>
+<th class="pb-3 w-1/12 text-center"></th>
+</tr>
+</thead>
+<tbody class="text-sm font-medium">
+<tr class="group border-b border-gray-50 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="py-3 px-2">
+<div class="relative">
+<input class="w-full bg-transparent border-none focus:ring-0 font-semibold text-gray-900 dark:text-white p-0 placeholder:text-gray-400" type="text" value="Chicken Breast Fillet"/>
+</div>
+<div class="text-xs text-gray-400 mt-1 font-medium">SKU: CHK-001</div>
+</td>
+<td class="py-3 text-center">
+<input class="w-20 text-center rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" type="number" value="10"/>
+</td>
+<td class="py-3 text-right">
+<div class="flex justify-end items-center gap-1">
+<span class="text-gray-400">$</span>
+<input class="w-20 text-right rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" type="number" value="4.50"/>
+</div>
+</td>
+<td class="py-3 text-right font-bold text-gray-900 dark:text-white">$45.00</td>
+<td class="py-3 text-center">
+<button class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+<tr class="group border-b border-gray-50 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="py-3 px-2">
+<div class="relative">
+<input class="w-full bg-transparent border-none focus:ring-0 font-semibold text-gray-900 dark:text-white p-0 placeholder:text-gray-400" type="text" value="Wonton Wrappers (Large)"/>
+</div>
+<div class="text-xs text-gray-400 mt-1 font-medium">SKU: WRP-LG</div>
+</td>
+<td class="py-3 text-center">
+<input class="w-20 text-center rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" type="number" value="25"/>
+</td>
+<td class="py-3 text-right">
+<div class="flex justify-end items-center gap-1">
+<span class="text-gray-400">$</span>
+<input class="w-20 text-right rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" type="number" value="1.20"/>
+</div>
+</td>
+<td class="py-3 text-right font-bold text-gray-900 dark:text-white">$30.00</td>
+<td class="py-3 text-center">
+<button class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="py-3 px-2">
+<input class="w-full bg-transparent border-none focus:ring-0 font-medium text-gray-900 dark:text-white p-0 placeholder:text-gray-400" placeholder="Search item..." type="text"/>
+</td>
+<td class="py-3 text-center">
+<input class="w-20 text-center rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" placeholder="0" type="number"/>
+</td>
+<td class="py-3 text-right">
+<div class="flex justify-end items-center gap-1">
+<span class="text-gray-400">$</span>
+<input class="w-20 text-right rounded bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 py-1 px-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none font-medium" placeholder="0.00" type="number"/>
+</div>
+</td>
+<td class="py-3 text-right font-bold text-gray-400">$0.00</td>
+<td class="py-3 text-center">
+<button class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50 dark:hover:bg-red-900/20">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<button class="w-full mt-4 py-3 border border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-gray-500 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all flex items-center justify-center gap-2 group font-semibold">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">add</span>
+                        Add Another Material
+                    </button>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a2c27] rounded-xl shadow-sm border border-[#e7f3ef] dark:border-[#2a3c35] p-6 sticky top-6">
+<div class="flex items-center gap-2 mb-6 border-b border-[#e7f3ef] dark:border-[#2a3c35] pb-3">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+<h2 class="text-lg font-bold">Payment &amp; Totals</h2>
+</div>
+<div class="mb-6">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">Payment Method</label>
+<div class="flex rounded-lg bg-gray-100 dark:bg-gray-800 p-1">
+<label class="flex-1 cursor-pointer">
+<input checked="" class="sr-only peer" name="payment" type="radio" value="cash"/>
+<div class="text-center py-2 px-3 rounded-md text-sm font-semibold text-gray-500 dark:text-gray-400 peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:text-primary peer-checked:shadow-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">payments</span> Cash
+                                </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="sr-only peer" name="payment" type="radio" value="credit"/>
+<div class="text-center py-2 px-3 rounded-md text-sm font-semibold text-gray-500 dark:text-gray-400 peer-checked:bg-white dark:peer-checked:bg-gray-700 peer-checked:text-primary peer-checked:shadow-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">credit_card</span> Credit
+                                </div>
+</label>
+</div>
+</div>
+<div class="mb-6">
+<label class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 block">Notes</label>
+<textarea class="w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 p-3 text-sm font-medium focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Delivery instructions or notes..." rows="3"></textarea>
+</div>
+<div class="space-y-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+<div class="flex justify-between items-center text-gray-600 dark:text-gray-400 text-sm font-medium">
+<span>Subtotal</span>
+<span>$75.00</span>
+</div>
+<div class="flex justify-between items-center text-gray-600 dark:text-gray-400 text-sm font-medium">
+<span>Tax (0%)</span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between items-center text-gray-600 dark:text-gray-400 text-sm font-medium">
+<span>Shipping</span>
+<span>$0.00</span>
+</div>
+<div class="flex justify-between items-center pt-4 border-t border-dashed border-gray-200 dark:border-gray-600 mt-2">
+<span class="text-lg font-bold text-gray-900 dark:text-white">Grand Total</span>
+<span class="text-2xl font-extrabold text-primary">$75.00</span>
+</div>
+</div>
+<div class="mt-8 flex flex-col gap-3">
+<button class="w-full py-3 rounded-lg bg-primary hover:bg-primary/90 text-white font-bold shadow-md transition-all hover:translate-y-[-1px] active:translate-y-[0px]">
+                            Confirm Order
+                        </button>
+<button class="w-full py-3 rounded-lg border border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-gray-400 font-semibold transition-colors text-sm">
+                            Save as Draft
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

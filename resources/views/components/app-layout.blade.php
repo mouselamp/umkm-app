@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Siomay Manager') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Alpine.js Loading Store -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('loading', {
+                show: false,
+                message: 'Menyimpan data...',
+
+                start(message = 'Menyimpan data...') {
+                    this.message = message;
+                    this.show = true;
+                },
+
+                stop() {
+                    this.show = false;
+                }
+            });
+        });
+    </script>
+</head>
+<body class="antialiased" x-data="{
+    darkMode: localStorage.getItem('darkMode') === 'true',
+    sidebarCollapsed: localStorage.getItem('sidebarCollapsed') === 'true',
+    toggleDarkMode() {
+        this.darkMode = !this.darkMode;
+        localStorage.setItem('darkMode', this.darkMode);
+        if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    },
+    user: null,
+    token: localStorage.getItem('token'),
+    async init() {
+        if (this.darkMode) {
+            document.documentElement.classList.add('dark');
+        }
+
+        if (this.token) {
+            await this.fetchUser();
+        } else if (!window.location.pathname.includes('login')) {
+            window.location.href = '/login';
+        }
+    },
+    async fetchUser() {
+        try {
+            const response = await fetch('/api/v1/auth/me', {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`,
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                this.user = data.data;
+            } else {
+                this.logout();
+            }
+        } catch (error) {
+            console.error('Auth check failed', error);
+        }
+    },
+    async logout() {
+        localStorage.removeItem('token');
+        this.token = null;
+        this.user = null;
+        window.location.href = '/login';
+    }
+}" @sidebar-toggle.window="sidebarCollapsed = $event.detail.collapsed; localStorage.setItem('sidebarCollapsed', sidebarCollapsed)">
+    <div class="min-h-screen bg-background">
+        <!-- Sidebar -->
+        <x-app-sidebar :collapsed="false" />
+
+        <!-- Main Content -->
+        <div :class="sidebarCollapsed ? 'ml-16' : 'ml-64'" class="transition-all duration-300">
+            <!-- Header -->
+            <x-app-header :title="$title ?? 'Dashboard'" :breadcrumbs="$breadcrumbs ?? []" />
+
+            <!-- Page Content -->
+            <main class="p-6 animate-fade-in">
+                {{ $slot }}
+            </main>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <x-loading-overlay />
+</body>
+</html>

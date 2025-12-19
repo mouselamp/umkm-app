@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Management List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf91",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#11211c",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c26",
+                        "text-main": "#0e1b17",
+                        "text-secondary": "#4e977f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">lunch_dining</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Siomay Manager</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Products</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Inventory</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Sales</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Finance</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-text-main dark:text-white relative">
+<span class="material-symbols-outlined" data-size="20px">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary cursor-pointer" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCnz9h4QoKN4z2GA36ARHC1F7x7KqnY8IPdyc5v5oOji-NrFTsXyV5W9r9fn8KiXI-GfLUZNGgM0wZnMz3BALSgq5icfM8FCo5Q_W37_vw-PMedMChufUDfyVXUxPi_N8tVyGQRVCSLxkQAewwxM7Od9c1gFGSbbpHoev4JLmytrJajP-i-INJoaf2LtE_3w9EP7vKuraP7mte3egb8oAjHLowHYaXoz8OqT63kDljDKkzXctpY2O7AbhrmQnmPEkcMMkEmFs7i3Ko");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 flex-col px-4 md:px-10 lg:px-40 py-5 w-full max-w-[1440px] mx-auto">
+<div class="flex flex-wrap gap-2 py-4">
+<a class="text-text-secondary hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Home</a>
+<span class="text-text-secondary text-sm font-medium leading-normal">/</span>
+<span class="text-text-main dark:text-white text-sm font-medium leading-normal">Product Catalog</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-text-main dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Products</h1>
+<p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-normal">Manage your siomay and dimsum catalog, update prices, and track stock levels.</p>
+</div>
+<button class="flex items-center justify-center gap-2 rounded-lg h-12 px-6 bg-primary hover:bg-emerald-500 text-white shadow-sm transition-all text-base font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="truncate">Add Product</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-text-secondary dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Total Products</p>
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<p class="text-text-main dark:text-white text-3xl font-bold leading-tight">45</p>
+<div class="text-xs text-text-secondary dark:text-gray-400 mt-1">+2 added this week</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-text-secondary dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Active Items</p>
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+</div>
+<p class="text-text-main dark:text-white text-3xl font-bold leading-tight">42</p>
+<div class="text-xs text-green-600 dark:text-green-400 mt-1">93% of catalog active</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-text-secondary dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Low Stock</p>
+<span class="material-symbols-outlined text-orange-500">warning</span>
+</div>
+<p class="text-text-main dark:text-white text-3xl font-bold leading-tight">5</p>
+<div class="text-xs text-orange-600 dark:text-orange-400 mt-1">Needs restocking soon</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-text-secondary dark:text-gray-400 text-sm font-medium uppercase tracking-wider">Top Category</p>
+<span class="material-symbols-outlined text-blue-500">category</span>
+</div>
+<p class="text-text-main dark:text-white text-2xl font-bold leading-tight truncate">Frozen Packs</p>
+<div class="text-xs text-text-secondary dark:text-gray-400 mt-1">18 items in category</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-4 mb-6 items-stretch lg:items-center">
+<div class="flex-1 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-lg leading-5 bg-white dark:bg-surface-dark placeholder-text-secondary focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm text-text-main dark:text-white" placeholder="Search by product name, SKU, or tag..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="relative">
+<select class="appearance-none bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-text-main dark:text-white py-3 pl-4 pr-10 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer min-w-[140px]">
+<option>All Categories</option>
+<option>Frozen Packs</option>
+<option>Ready to Eat</option>
+<option>Sauces</option>
+<option>Packaging</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-secondary">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="relative">
+<select class="appearance-none bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-text-main dark:text-white py-3 pl-4 pr-10 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer min-w-[120px]">
+<option>Status: All</option>
+<option>Active</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-text-secondary">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-3 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-lg text-text-main dark:text-white text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>More Filters</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col flex-1">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+<th class="p-4 pl-6 text-xs font-semibold uppercase tracking-wider text-text-secondary w-16">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary">Product</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary">SKU</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary">Category</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary text-right">Unit Price</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary text-right">Stock</th>
+<th class="p-4 text-xs font-semibold uppercase tracking-wider text-text-secondary text-center">Status</th>
+<th class="p-4 pr-6 text-xs font-semibold uppercase tracking-wider text-text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 pl-6">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Plate of steamed dimsum" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB06-k1REleOZ8XkqLV-PBVtzlNAKflBhbzHRtSsdZopkcpo1FARBhs3U0hv7T3SyH-xEWkHr_1hfZHV2rt0avZvPdWe35XSbFvgk3KpmsHOsfDAKe_RLI6T0jEe9Q4tTdJQD33z56d38CfW8pk1nPBe4cZjDbpQOdGnJ320PFsULoGek4CMJXSfTN-8dD-IOrLKw2J9tGv6NwKi_kgFNXoG1AZqUq1a-GqVlpsXN2v2IGkzcncBw00psGU9CmbTRsW5solFdHoad0");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white group-hover:text-primary transition-colors cursor-pointer">Siomay Ayam Original</span>
+<span class="text-xs text-text-secondary">500g Pack</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-text-secondary font-mono">SKU-001</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                    Frozen
+                                </span>
+</td>
+<td class="p-4 text-sm font-medium text-text-main dark:text-white text-right">Rp 35.000</td>
+<td class="p-4 text-right">
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-medium text-text-main dark:text-white">50 units</span>
+<div class="w-16 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[65%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-green-500" title="Active"></span>
+</td>
+<td class="p-4 pr-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 pl-6">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Shrimp dumplings in bamboo basket" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2RTXNMSU5pvjmFRightNIGeNtDg5P7UfAODwsK0HWbsbw0WpBPKwBeUwbFkAxbhoa1XxfgHOeG0UfanZ6HEEyo9YX-bwExBbkRVS3JUu9pllWbgiO6OzCCwmscntL2uP7OgUC5zLz0yIbPN32jdzK1n0L8xsGKRERg0sMy77phnBJ9_CVOO74lfX9hmt3KMOI1SR8X5boJzd_MPN60ZQUgdtOEKZzG3CEbrmFr6DycijAeuf1LFEqax_ZEfqpsKrDpgvC9jzENOc");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white group-hover:text-primary transition-colors cursor-pointer">Dimsum Udang</span>
+<span class="text-xs text-text-secondary">Per Tray</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-text-secondary font-mono">SKU-002</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                                    Ready-to-eat
+                                </span>
+</td>
+<td class="p-4 text-sm font-medium text-text-main dark:text-white text-right">Rp 40.000</td>
+<td class="p-4 text-right">
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-medium text-orange-600 dark:text-orange-400">12 units</span>
+<div class="w-16 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-orange-500 w-[15%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-green-500" title="Active"></span>
+</td>
+<td class="p-4 pr-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 pl-6">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Red chili oil in glass jar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFvLwIBvKM3qw0qy0jt-j6Ey8ECagprP_dD4Y_giyk8Y4SZ-H2LE7LTzjhdyFs_fRCjYv2woTHaSKSs-JjAak4Qltu2f-doS4QK5VTJJ6xzOB50dT9FmeSZEXSgF3sjlDfRe5MNyDa7pXtxtwZxZ__1cmoYcZl8Q1twC0uw38JBfc70tlL0NL0ARsZHMNF984tcd1jXoRXH94_U8fZbmoXl6d4bKbpu4ntEA3Iy2vTLkt-nHfpN0OCmEHZOCzPOAQvZD5ZHIrTiOM");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white group-hover:text-primary transition-colors cursor-pointer">Chili Oil Jar</span>
+<span class="text-xs text-text-secondary">200ml Jar</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-text-secondary font-mono">SKU-003</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300">
+                                    Condiment
+                                </span>
+</td>
+<td class="p-4 text-sm font-medium text-text-main dark:text-white text-right">Rp 15.000</td>
+<td class="p-4 text-right">
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-medium text-text-main dark:text-white">100 units</span>
+<div class="w-16 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[90%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-green-500" title="Active"></span>
+</td>
+<td class="p-4 pr-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 pl-6">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Fried wonton on plate" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDW5ZkFCCYuIl4tVaoh12mIVJyXj-dOde4pT1Z1yDQBkNl7dTVZ_B899hNftllWafzAO8y4xoE0wg84-W3WsyUfD5AML0PRLUpFjvDtHRz-bX08dSY3shlylIEM5xsln2B_RoHmEGZCtz66VRDAHXRNlcCEWB79WsOYO2rrhGBaDQ1Vlj1OLTzfqAc9PM1tNeFEVCCue_vzCn9-lHjamAx38exd-WH56TThS44yf1mZlxHBYH8oENhC2lPcrjzf_XmEvXAyRjlyteM");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white group-hover:text-primary transition-colors cursor-pointer">Fried Wonton Pack</span>
+<span class="text-xs text-text-secondary">20 pcs</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-text-secondary font-mono">SKU-004</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                    Frozen
+                                </span>
+</td>
+<td class="p-4 text-sm font-medium text-text-main dark:text-white text-right">Rp 25.000</td>
+<td class="p-4 text-right">
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-medium text-text-main dark:text-white">0 units</span>
+<div class="w-16 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[0%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-slate-400" title="Draft / Out of Stock"></span>
+</td>
+<td class="p-4 pr-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 pl-6">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-lg bg-cover bg-center border border-slate-200 dark:border-slate-700" data-alt="Steamed spring rolls" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgwDkrUQPxyRNEduKF5b84HJfIlx2hI_x2J0xBdJ0q7Mn4CefHhdltLOTWNS5Ly17TJMsLej6eXORwVX6ekwssiPt_-_lIMMtoxUWXp3NghzF_b5_LK8fBdm8c8WMU_mminXFZ24vxud2uvgTdEpLRLovlx_ru1A3SCSgHjkZoQeHElwprZSVJghm5ay-yZzW6QHDG45JnxJKCsDt4YRqc5rMr499MobV6ITBa581TRTyX9wyGw6jVypKhKgqwSrdjJo34Whggivo");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white group-hover:text-primary transition-colors cursor-pointer">Lumpia Kulit Tahu</span>
+<span class="text-xs text-text-secondary">Premium</span>
+</div>
+</div>
+</td>
+<td class="p-4 text-sm text-text-secondary font-mono">SKU-005</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                                    Ready-to-eat
+                                </span>
+</td>
+<td class="p-4 text-sm font-medium text-text-main dark:text-white text-right">Rp 45.000</td>
+<td class="p-4 text-right">
+<div class="flex flex-col items-end gap-1">
+<span class="text-sm font-medium text-text-main dark:text-white">25 units</span>
+<div class="w-16 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[50%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-center">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-green-500" title="Active"></span>
+</td>
+<td class="p-4 pr-6 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-text-secondary hover:text-primary hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
+<span class="text-sm text-text-secondary">Showing <span class="font-medium text-text-main dark:text-white">1-5</span> of <span class="font-medium text-text-main dark:text-white">45</span> results</span>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-secondary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="flex items-center justify-center h-8 w-8 rounded bg-primary text-white text-sm font-medium">1</button>
+<button class="flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-main dark:text-white text-sm font-medium transition-colors">2</button>
+<button class="flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-main dark:text-white text-sm font-medium transition-colors">3</button>
+<span class="text-text-secondary text-sm px-1">...</span>
+<button class="flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-main dark:text-white text-sm font-medium transition-colors">9</button>
+<button class="flex items-center justify-center h-8 w-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-center text-xs text-text-secondary">
+            © 2024 Siomay Manager v1.2. Product catalog last synced today at 09:41 AM.
+        </div>
+</div>
+</body></html>

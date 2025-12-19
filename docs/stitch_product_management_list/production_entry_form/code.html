@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Production Entry - SiomayManager</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf91",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#11211c",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#192b25",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "sans": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<aside class="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark h-full">
+<div class="p-4 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 px-2">
+<div class="bg-primary aspect-square rounded-full size-10 flex items-center justify-center text-white font-bold text-xl">
+                        S
+                    </div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold">SiomayManager</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">factory</span>
+<span class="text-sm font-medium">Production</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-sm font-medium">Sales</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm font-medium">Finance</span>
+</a>
+</nav>
+</div>
+<div class="px-2">
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Log Out</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark z-10">
+<div class="flex items-center gap-4">
+<button class="lg:hidden p-2 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden sm:block">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-slate-400">/</span>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Production</a>
+<span class="text-slate-400">/</span>
+<span class="font-medium text-slate-900 dark:text-white">New Batch</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Budi Santoso</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Production Manager</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Portrait of a smiling asian man in a chef uniform" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMf4EYUs6c166yiD0Hb7jfyJDKjUgLYbjvvt8Ue07-UhE8k5RTSZVi22ko1eOpf96xDnlm0bLN9tR-hSDHs0YWO6a6k7Q7VhmXVUp-WYcirsaG9XjpzwOBgC6OYuyhTuFgqIEZou_23uNgYyCBO2rV9rTv9GV6BkdSeX8aWaAygK2_W3GZ_jONvDUn7iawG_VscFiKlJ1ibAoYnMKuyaG6xfqNrK_P8OufT14yrhBErH4ZKDIkZLxJ6t8zCLUXft8oJeMog-6Eu_w");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-10">
+<div class="max-w-6xl mx-auto space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Record New Production</h2>
+<p class="mt-2 text-slate-500 dark:text-slate-400">Log a new batch to calculate material usage and update stock levels automatically.</p>
+</div>
+<div class="text-sm text-slate-500 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full flex items-center gap-2">
+<span class="size-2 bg-primary rounded-full animate-pulse"></span>
+                        System Online
+                    </div>
+</div>
+<form class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_document</span>
+                                Batch Details
+                            </h3>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select Product</label>
+<div class="relative">
+<select class="w-full h-12 rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white focus:border-primary focus:ring-primary pl-11">
+<option disabled="" selected="" value="">Search for a product...</option>
+<option value="siomay-chicken">Chicken Siomay (Original)</option>
+<option value="siomay-shrimp">Shrimp Siomay</option>
+<option value="dimsum-mix">Mixed Dimsum Platter</option>
+<option value="hakau">Hakau</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 pointer-events-none">search</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Recipe / BOM Version</label>
+<div class="relative">
+<select class="w-full h-12 rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white focus:border-primary focus:ring-primary pl-11">
+<option value="v1">Standard (v1.2)</option>
+<option value="v2">Spicy Variation (v1.0)</option>
+<option value="v3">Bulk Production (v2.1)</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 pointer-events-none">receipt_long</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Date &amp; Time</label>
+<div class="relative">
+<input class="w-full h-12 rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white focus:border-primary focus:ring-primary pl-11" type="datetime-local" value="2023-10-27T08:30"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-slate-400 pointer-events-none">calendar_today</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Quantity Produced</label>
+<div class="flex rounded-lg shadow-sm">
+<div class="relative flex-grow focus-within:z-10">
+<input class="w-full h-14 rounded-l-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white text-lg font-semibold focus:border-primary focus:ring-primary pl-4" placeholder="0" type="number"/>
+</div>
+<div class="relative -ml-px">
+<select class="h-14 w-24 rounded-r-lg border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium focus:border-primary focus:ring-primary text-center">
+<option>Pcs</option>
+<option>Kg</option>
+<option>Box</option>
+</select>
+</div>
+</div>
+<p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Enter total units. System will auto-calculate individual ingredients.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+                                Additional Notes
+                            </h3>
+<textarea class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-white focus:border-primary focus:ring-primary resize-none p-4" placeholder="Add quality check notes, batch number override, or shift details..." rows="3"></textarea>
+</div>
+</div>
+<div class="lg:col-span-1 space-y-6 sticky top-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg border border-primary/20 p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Material Impact</h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Preview</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Based on <span class="font-semibold text-slate-900 dark:text-white">500 Pcs</span> of <span class="font-semibold text-slate-900 dark:text-white">Chicken Siomay</span>.</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-slate-700 p-1.5 rounded-md shadow-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">egg_alt</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Minced Chicken</p>
+<p class="text-xs text-slate-500">Stock: 45 kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-red-500">- 12.5 kg</p>
+<div class="flex items-center justify-end gap-1 text-primary text-xs font-medium">
+<span>OK</span>
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-slate-700 p-1.5 rounded-md shadow-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">bakery_dining</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Tapioca Flour</p>
+<p class="text-xs text-slate-500">Stock: 120 kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-red-500">- 4.2 kg</p>
+<div class="flex items-center justify-end gap-1 text-primary text-xs font-medium">
+<span>OK</span>
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-white dark:bg-slate-700 p-1.5 rounded-md shadow-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">set_meal</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Shrimp Paste</p>
+<p class="text-xs text-slate-500">Stock: 2.0 kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-red-500">- 2.5 kg</p>
+<div class="flex items-center justify-end gap-1 text-amber-500 text-xs font-medium">
+<span>Low</span>
+<span class="material-symbols-outlined text-[16px]">warning</span>
+</div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/30 rounded-lg flex gap-3 items-start">
+<span class="material-symbols-outlined text-amber-500 shrink-0">info</span>
+<p class="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
+                                        Warning: Insufficient stock for <strong>Shrimp Paste</strong>. Production can proceed but inventory will go negative.
+                                    </p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
+<div class="flex justify-between items-center text-sm mb-2">
+<span class="text-slate-500 dark:text-slate-400">Total Items</span>
+<span class="font-bold text-slate-900 dark:text-white">500</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500 dark:text-slate-400">Est. Cost</span>
+<span class="font-bold text-slate-900 dark:text-white">IDR 450,000</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-lg shadow-md shadow-primary/20 transition-all active:scale-[0.98] flex justify-center items-center gap-2" type="button">
+<span class="material-symbols-outlined">check</span>
+                                Confirm Production
+                            </button>
+<button class="w-full bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold py-3.5 px-6 rounded-lg transition-colors" type="button">
+                                Cancel
+                            </button>
+</div>
+</div>
+</form>
+</div>
+</main>
+</div>
+</div>
+</body></html>
